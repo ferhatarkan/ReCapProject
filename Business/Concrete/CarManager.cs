@@ -17,11 +17,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public CarManager(EfCarDal efCarDal)
-        {
-        }
-
-        public EfCarDal EfCarDal { get; }
+    
 
         public void Add(Car car)
         {
