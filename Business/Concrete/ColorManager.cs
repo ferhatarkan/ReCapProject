@@ -10,57 +10,35 @@ namespace Business.Concrete
 {
     public class ColorManager : IColorService
     {
-        ICarDal _carDal;
-        public ColorManager(ICarDal carDal)
+        IColorDal _colorDal;
+        public ColorManager(IColorDal colorDal)
         {
-            _carDal = carDal;
+            _colorDal = colorDal;
         }
 
-        public void Add(Car car)
+        public void Add(Color color)
         {
-            if (car.Description.Length > 2 && car.DailyPrice > 0)
-            {
-                _carDal.Add(car);
-            }
-            else
-            {
-                Console.WriteLine("Ekleme başarısız");
-            }
+            _colorDal.Add(color);
         }
 
-        public void Delete(Car car)
+        public void Delete(Color color)
         {
-            _carDal.Delete(car);
+            _colorDal.Delete(color);
         }
 
-        public List<Car> GetAll()
+        public List<Color> GetAll()
         {
-            return _carDal.GetAll();
+            return _colorDal.GetAll();
         }
 
-        public Car GetCarById(int id)
+        public List<Color> GetCarsByColorId(int colorId)
         {
-            return _carDal.GetById(c => c.Id == id);
+            return _colorDal.GetAll().Where(c => c.ColorId == colorId).ToList();
         }
 
-        public List<Car> GetCarsByBrandId(int brandId)
+        public void Update(Color color)
         {
-            return _carDal.GetAll().Where(c => c.BrandId == brandId).ToList();
-        }
-
-        public List<Car> GetCarsByColorId(int colorId)
-        {
-            return _carDal.GetAll().Where(c => c.ColorId == colorId).ToList();
-        }
-
-        public Car GetCarsById(int id)
-        {
-            return _carDal.GetById(c => c.Id == id);
-        }
-
-        public void Update(Car car)
-        {
-            _carDal.Update(car);
+            _colorDal.Update(color);
         }
     }
 }

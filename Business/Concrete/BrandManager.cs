@@ -10,17 +10,17 @@ namespace Business.Concrete
 {
     public class BrandManager : IBrandService
     {
-        ICarDal _carDal;
-        public BrandManager(ICarDal carDal)
+        IBrandDal _brandDal;
+        public BrandManager(IBrandDal brandDal)
         {
-            _carDal = carDal;
+            _brandDal = brandDal;
         }
 
-        public void Add(Car car)
+        public void Add(Brand brand)
         {
-            if (car.Description.Length > 2 && car.DailyPrice > 0)
+            if (brand.BrandName.Length > 2 )
             {
-                _carDal.Add(car);
+                _brandDal.Add(brand);
             }
             else
             {
@@ -28,39 +28,25 @@ namespace Business.Concrete
             }
         }
 
-        public void Delete(Car car)
+        public void Delete(Brand brand)
         {
-            _carDal.Delete(car);
+            _brandDal.Delete(brand);
         }
 
-        public List<Car> GetAll()
+        public List<Brand> GetAll()
         {
-            return _carDal.GetAll();
+            return _brandDal.GetAll();
         }
 
-        public Car GetCarById(int id)
+
+        public List<Brand> GetCarsByBrandId(int brandId)
         {
-            return _carDal.GetById(c => c.Id == id);
+            return _brandDal.GetAll().Where(c => c.BrandId == brandId).ToList();
         }
 
-        public List<Car> GetCarsByBrandId(int brandId)
+        public void Update(Brand brand)
         {
-            return _carDal.GetAll().Where(c => c.BrandId == brandId).ToList();
-        }
-
-        public List<Car> GetCarsByColorId(int colorId)
-        {
-            return _carDal.GetAll().Where(c => c.ColorId == colorId).ToList();
-        }
-
-        public Car GetCarsById(int id)
-        {
-            return _carDal.GetById(c => c.Id == id);
-        }
-
-        public void Update(Car car)
-        {
-            _carDal.Update(car);
+            _brandDal.Update(brand);
         }
     }
 }
