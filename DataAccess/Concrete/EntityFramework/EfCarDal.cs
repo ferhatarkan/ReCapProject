@@ -9,7 +9,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal :IEntityRepository<Car>
+    public class EfCarDal :IEntityRepository<Car>,ICarDal
     {
         public void Add(Car entity)
         {

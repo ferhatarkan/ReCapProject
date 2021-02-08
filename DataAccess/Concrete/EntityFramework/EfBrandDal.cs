@@ -9,7 +9,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfBrandDal:IEntityRepository<Brand>
+    public class EfBrandDal:IEntityRepository<Brand>,IBrandDal
     {
         public void Add(Brand entity)
         {

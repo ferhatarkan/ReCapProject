@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,12 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
+
+        public CarManager(EfCarDal efCarDal)
+        {
+        }
+
+        public EfCarDal EfCarDal { get; }
 
         public void Add(Car car)
         {
