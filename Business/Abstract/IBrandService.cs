@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface ICarService
+    public interface IBrandService
     {
         void Add(Car car);
         void Delete(Car car);
@@ -14,7 +14,6 @@ namespace Business.Abstract
         void Update(Car car);
         List<Car> GetCarsByBrandId(int brandId);
         List<Car> GetCarsByColorId(int colorId);
-
 
     }
 }

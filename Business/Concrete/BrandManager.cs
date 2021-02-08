@@ -8,10 +8,10 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class CarManager : ICarService
+    public class BrandManager : IBrandService
     {
         ICarDal _carDal;
-        public CarManager(ICarDal carDal)
+        public BrandManager(ICarDal carDal)
         {
             _carDal = carDal;
         }
@@ -45,7 +45,7 @@ namespace Business.Concrete
 
         public List<Car> GetCarsByBrandId(int brandId)
         {
-            return _carDal.GetAll().Where(c=>c.BrandId==brandId).ToList();
+            return _carDal.GetAll().Where(c => c.BrandId == brandId).ToList();
         }
 
         public List<Car> GetCarsByColorId(int colorId)
@@ -55,7 +55,7 @@ namespace Business.Concrete
 
         public Car GetCarsById(int id)
         {
-            return _carDal.GetById(c=>c.Id==id);
+            return _carDal.GetById(c => c.Id == id);
         }
 
         public void Update(Car car)
