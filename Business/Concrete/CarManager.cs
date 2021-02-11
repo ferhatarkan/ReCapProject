@@ -2,6 +2,7 @@
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,35 +36,30 @@ namespace Business.Concrete
         {
             _carDal.Delete(car);
         }
+        public void Update(Car car)
+        {
+            _carDal.Update(car);
+        }
+
 
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
         }
 
-        public Car GetCarById(int id)
+        public List<CarDetailDto> GetCarDetails()
         {
-            return _carDal.GetById(c => c.Id == id);
+            return _carDal.GetCarDetails();
+        }
+       
+        List<CarDetailDto> ICarService.GetCarsByBrandId(int brandId)
+        {
+            return _carDal.GetCarDetails(c=>c.BrandId==brandId);
         }
 
-        public List<Car> GetCarsByBrandId(int brandId)
+        List<CarDetailDto> ICarService.GetCarsByColorId(int colorId)
         {
-            return _carDal.GetAll().Where(c=>c.BrandId==brandId).ToList();
-        }
-
-        public List<Car> GetCarsByColorId(int colorId)
-        {
-            return _carDal.GetAll().Where(c => c.ColorId == colorId).ToList();
-        }
-
-        public Car GetCarsById(int id)
-        {
-            return _carDal.GetById(c=>c.Id==id);
-        }
-
-        public void Update(Car car)
-        {
-            _carDal.Update(car);
+            return _carDal.GetCarDetails(c => c.BrandId == colorId);
         }
     }
 }

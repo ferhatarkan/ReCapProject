@@ -13,11 +13,9 @@ namespace ConsoleUI
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             ColorManager colorManager = new ColorManager(new EfColorDal());
 
-            
-            colorManager.Add(new Color { ColorName = "Mor" });
-            brandManager.Add(new Brand { BrandName = "Citröen" });
-            carManager.Add(new Car { ColorId=2,BrandId=7,DailyPrice = 5000, Description = "temiz", ModelYear = 2010 });
-
+                    
+           
+           
 
         }
     }
