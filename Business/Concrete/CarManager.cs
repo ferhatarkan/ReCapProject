@@ -6,6 +6,7 @@ using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Business.Concrete
@@ -52,14 +53,19 @@ namespace Business.Concrete
             return _carDal.GetCarDetails();
         }
        
-        List<CarDetailDto> ICarService.GetCarsByBrandId(int brandId)
+        public List<CarDetailDto> GetCarsByBrandId(int brandId)
         {
             return _carDal.GetCarDetails(c=>c.BrandId==brandId);
         }
 
-        List<CarDetailDto> ICarService.GetCarsByColorId(int colorId)
+        public List<CarDetailDto> GetCarsByColorId(int colorId)
         {
-            return _carDal.GetCarDetails(c => c.BrandId == colorId);
+            return _carDal.GetCarDetails(c => c.ColorId == colorId);
+        }
+
+        public Car GetById(int id)
+        {
+            return _carDal.Get(c=>c.Id==id);
         }
     }
 }
